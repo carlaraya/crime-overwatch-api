@@ -21,6 +21,15 @@ seeds_list = [
       { id: 8, name: 'Cattle Rustling' },
     ]
   },
+  {
+    model: MostWanted,
+    seeds: [
+      { name: 'Anastasia Ivanova', crime_type_id: 7, exact_crime: 'hijacked Jack Ma\'s Ferrari', reward: 69000000, additional_info: 'Armed and Dangerous' },
+      { name: 'Dimitri Vasiliv', crime_type_id: 1, exact_crime: 'Killed Donald Trump', reward: 99999999, additional_info: 'Very Armed And Dangerous' },
+      { name: 'Austin Callaway', crime_type_id: 4, exact_crime: 'Hacked Landbank', reward: 54697869, additional_info: 'Wanted DEAD or ALIVE' },
+      { name: 'Lee Jong Ip', crime_type_id: 8, exact_crime: 'Stole Allan Carreon\'s cow', reward: 10000, additional_info: 'Unorthodoxed way of thinking' },
+    ]
+  }
 ]
 
 seeds_list.each do |seed_obj|
