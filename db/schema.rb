@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171122144645) do
+ActiveRecord::Schema.define(version: 20171127073909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,19 @@ ActiveRecord::Schema.define(version: 20171122144645) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["crime_type_id"], name: "index_most_wanteds_on_crime_type_id"
+  end
+
+  create_table "police_stations", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.string "name"
+    t.string "address"
+    t.decimal "lat"
+    t.decimal "lng"
+    t.string "email"
+    t.string "contact_info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "most_wanteds", "crime_types"
