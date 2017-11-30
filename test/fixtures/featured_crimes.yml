@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  police_station: one
+  crime_type: one
+  content: MyText
+
+two:
+  title: MyString
+  police_station: two
+  crime_type: two
+  content: MyText

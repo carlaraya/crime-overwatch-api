@@ -29,6 +29,11 @@ seeds_list = [
       { name: 'Austin Callaway', crime_type_id: 4, exact_crime: 'Hacked Landbank', reward: 54697869, additional_info: 'Wanted DEAD or ALIVE' },
       { name: 'Lee Jong Ip', crime_type_id: 8, exact_crime: 'Stole Allan Carreon\'s cow', reward: 10000, additional_info: 'Unorthodoxed way of thinking' },
     ]
+  },
+  {
+    model: PoliceStation,
+    seeds: [
+    ]
   }
 ]
 

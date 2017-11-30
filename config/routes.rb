@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :crime_records
+  resources :featured_crimes
   resources :police_stations
   resources :most_wanteds
   post 'authenticate', to: 'authentication#authenticate'
