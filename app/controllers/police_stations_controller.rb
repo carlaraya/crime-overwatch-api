@@ -1,7 +1,6 @@
 class PoliceStationsController < ApplicationController
   before_action :set_police_station, only: [:show, :update]
   before_action :authenticate_request, only: [:update]
-  before_action :auth_current, only: [:update]
 
   # GET /police_stations
   def index
@@ -12,7 +11,7 @@ class PoliceStationsController < ApplicationController
 
   # GET /police_stations/1
   def show
-    render json: @police_station
+    render json: @police_station, except: [:password_digest]
   end
 
   # PATCH/PUT /police_stations/1
@@ -30,12 +29,8 @@ class PoliceStationsController < ApplicationController
       @police_station = PoliceStation.find(params[:id])
     end
 
-    def auth_current
-      render json: { error: 'Not Authorized' }, status: 401 unless @current_police_station.id == @police_station.id
-    end
-
     # Only allow a trusted parameter "white list" through.
     def police_station_params
-      params.require(:police_station).permit(:username, :password_digest, :name, :address, :lat, :lng, :email, :contact_info)
+      params.permit(:username, :password_digest, :name, :address, :lat, :lng, :email, :contact_info)
     end
 end

@@ -4,6 +4,10 @@ class ApplicationController < ActionController::API
   private
   def authenticate_request
     @current_police_station = AuthorizeApiRequest.call(request.headers).result
+    render json: { error: 'Not Authorized' }, status: 401 unless (@current_police_station and @police_station and @current_police_station.id == @police_station.id)
+  end
+  def auth_request_any
+    @current_police_station = AuthorizeApiRequest.call(request.headers).result
     render json: { error: 'Not Authorized' }, status: 401 unless @current_police_station
   end
 end
