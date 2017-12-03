@@ -22,15 +22,6 @@ seeds_list = [
     ]
   },
   {
-    model: MostWanted,
-    seeds: [
-      { id: 1, name: 'Anastasia Ivanova', crime_type_id: 7, exact_crime: 'hijacked Jack Ma\'s Ferrari', reward: 69000000, additional_info: 'Armed and Dangerous' },
-      { id: 2, name: 'Dimitri Vasiliv', crime_type_id: 1, exact_crime: 'Killed Donald Trump', reward: 99999999, additional_info: 'Very Armed And Dangerous' },
-      { id: 3, name: 'Austin Callaway', crime_type_id: 4, exact_crime: 'Hacked Landbank', reward: 54697869, additional_info: 'Wanted DEAD or ALIVE' },
-      { id: 4, name: 'Lee Jong Ip', crime_type_id: 8, exact_crime: 'Stole Allan Carreon\'s cow', reward: 10000, additional_info: 'Unorthodoxed way of thinking' },
-    ]
-  },
-  {
     model: PoliceStation,
     seeds: [
       { id: 1, username: "reg1", password: "password", password_confirmation: "password", name: "Police Station 1", address: "1 G Road T City", lat: 2000, lng: 0, email: "abc@gmail.com", contact_info: "(02)6984522" },
@@ -45,6 +36,19 @@ seeds_list = [
       { id: 10, username: "reg10", password: "password10", password_confirmation: "password10", name: "Police Station 10", address: "696 Earth St Cosmos Avenue Nebula City", lat: -3.67E-13, lng: -2000, email: "humanprostitrafic321@gmail.com", contact_info: "(02)6969669" },
       { id: 11, username: "reg11", password: "password11", password_confirmation: "password11", name: "Police Station 11", address: "112 Eden Lane Greenland City", lat: 1000, lng: -1732.050808, email: "benjaminberkley@breakingbenjamin.com", contact_info: "(02)3333333" },
       { id: 12, username: "reg12", password: "password12", password_confirmation: "password12", name: "Police Station 12", address: "5512 Bachelor St. Interstellar City", lat: 1732.050808, lng: -1000, email: "fireflies@flame.com", contact_info: "(02)5565565" },
+    ]
+  },
+  {
+    model: MostWanted,
+    seeds: [
+      { id: 1, name: 'Anastasia Ivanova', crime_type_id: 7, exact_crime: 'hijacked Jack Ma\'s Ferrari', reward: 69000000, additional_info: 'Armed and Dangerous',
+        police_station_ids: [1, 7] },
+      { id: 2, name: 'Dimitri Vasiliv', crime_type_id: 1, exact_crime: 'Killed Donald Trump', reward: 99999999, additional_info: 'Very Armed And Dangerous',
+        police_station_ids: [5] },
+      { id: 3, name: 'Austin Callaway', crime_type_id: 4, exact_crime: 'Hacked Landbank', reward: 54697869, additional_info: 'Wanted DEAD or ALIVE',
+        police_station_ids: [10] },
+      { id: 4, name: 'Lee Jong Ip', crime_type_id: 8, exact_crime: 'Stole Allan Carreon\'s cow', reward: 10000, additional_info: 'Unorthodoxed way of thinking',
+        police_station_ids: [9] },
     ]
   },
   {
@@ -644,7 +648,6 @@ seeds_list.reverse.each do |seed_obj|
 end
 seeds_list.each do |seed_obj|
   print "Adding seeds to ", seed_obj[:model].name, "..."
-  seed_obj[:model].destroy_all
   hmm = seed_obj[:model].create(seed_obj[:seeds])
   hmm.each do |hm|
     if hm.errors.messages.length > 0

@@ -1,5 +1,5 @@
 class PoliceStationsController < ApplicationController
-  before_action :set_police_station, only: [:show, :update]
+  before_action :set_police_station, only: [:update]
   before_action :authenticate_request, only: [:update]
 
   # GET /police_stations
@@ -11,7 +11,7 @@ class PoliceStationsController < ApplicationController
 
   # GET /police_stations/1
   def show
-    render json: @police_station, except: [:password_digest]
+    render json: PoliceStation.includes(:featured_crimes, :most_wanteds).find(params[:id]), except: [:password_digest], include: [:featured_crimes, :most_wanteds]
   end
 
   # PATCH/PUT /police_stations/1
