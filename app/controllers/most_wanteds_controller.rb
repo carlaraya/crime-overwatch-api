@@ -1,16 +1,19 @@
 class MostWantedsController < ApplicationController
-  before_action :set_most_wanted, only: [:show, :update, :destroy]
-
+  before_action :set_most_wanted_police_stations, only: [:update, :destroy]
+  before_action :authenticate_request_set, only: [:update, :destroy]
+  before_action :auth_request_any, only: [:create]
   # GET /most_wanteds
   def index
-    @most_wanteds = MostWanted.all
-
-    render json: @most_wanteds
+    render json: MostWanted.includes(:police_stations).all, include: {
+      police_stations: {only: [:id, :name]}
+    }
   end
 
   # GET /most_wanteds/1
   def show
-    render json: @most_wanted
+    render json: MostWanted.includes(:police_stations).find(params[:id]), include: {
+      police_stations: {only: [:id, :name]}
+    }
   end
 
   # POST /most_wanteds
@@ -40,12 +43,13 @@ class MostWantedsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_most_wanted
+    def set_most_wanted_police_stations
       @most_wanted = MostWanted.find(params[:id])
+      @police_stations = @most_wanted.police_stations
     end
 
     # Only allow a trusted parameter "white list" through.
     def most_wanted_params
-      params.require(:most_wanted).permit(:name, :crime_type_id, :exact_crime, :reward, :additional_info)
+      params.permit(:name, :crime_type_id, :exact_crime, :reward, :additional_info)
     end
 end

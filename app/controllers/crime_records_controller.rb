@@ -50,6 +50,6 @@ class CrimeRecordsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def crime_record_params
-      params.require(:crime_record).permit(:crime_type_id, :new, :solved, :is_hidden)
+      params.permit(:crime_type_id, :new, :solved, :is_hidden)
     end
 end
