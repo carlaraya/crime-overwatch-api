@@ -19,6 +19,7 @@ class MostWantedsController < ApplicationController
   # POST /most_wanteds
   def create
     @most_wanted = MostWanted.new(most_wanted_params)
+    @most_wanted.police_stations << @current_police_station
 
     if @most_wanted.save
       render json: @most_wanted, status: :created, location: @most_wanted
