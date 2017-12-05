@@ -1,6 +1,6 @@
 class MostWantedsController < ApplicationController
   before_action :set_most_wanted_police_stations, only: [:update, :destroy]
-  before_action :authenticate_request_set, only: [:update, :destroy]
+  before_action :authenticate_request_set, only: [:update]
   before_action :auth_request_any, only: [:create]
   # GET /most_wanteds
   def index
